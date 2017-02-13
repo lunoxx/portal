@@ -1,0 +1,25 @@
+jQuery(document).ready(function () {
+jQuery.ajaxSetup({cache: false});
+
+jQuery(".livechat").html("<img src=../../_images/chat/offline.png/_.html alt=\"Live Support Offline\" title=\"Live Support Offline\" />");
+
+jQuery("body").append("<div id='receiver' style='width: 0px; height: 0px; visibility:hidden; overflow:hidden;'></div>");
+
+
+jQuery(".livechat").click(function () {
+open_win();
+});
+
+codeInject();
+
+});
+
+function codeInject() {
+	jQuery("#receiver").load('http://five-host.co/includes/chat/jsCodeInjecter.php?url='+escape(window.location), function(responseText, textStatus, XMLHttpRequest) {
+		t=setTimeout("codeInject();",10000);
+	});
+}
+
+function open_win() {
+	window.open("http://five-host.co/start_session.php","_blank","toolbar=no, location=yes, directories=no, status=no, menubar=yes, scrollbars=yes, resizable=yes, copyhistory=no, width=625, height=475");
+}
